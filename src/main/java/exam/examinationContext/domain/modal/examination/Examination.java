@@ -10,6 +10,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Getter
 @EqualsAndHashCode(of = {"examinationId"})
 public class Examination implements Entity<Examination> {
     private ExaminationId examinationId;
