@@ -26,9 +26,9 @@ public class ExaminationController {
 
     @PutMapping("/examination/{examinationId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void reassemble(@PathVariable String examinationId) {
+    ExaminationDTO getExamination(@PathVariable String examinationId) {
 
-        examinationApplicationService.getExamination(examinationId);
+        return examinationApplicationService.getExamination(examinationId);
     }
 
 }
