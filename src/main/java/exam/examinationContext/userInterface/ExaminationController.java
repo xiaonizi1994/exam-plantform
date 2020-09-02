@@ -10,16 +10,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class ExaminationController {
     private final ExaminationApplicationService examinationApplicationService;
-    private final MemoryExaminationReadRepository examinationReadRepository;
 
-    public ExaminationController(ExaminationApplicationService examinationApplicationService, MemoryExaminationReadRepository examinationReadRepository) {
+    public ExaminationController(ExaminationApplicationService examinationApplicationService) {
         this.examinationApplicationService = examinationApplicationService;
-        this.examinationReadRepository = examinationReadRepository;
     }
 
     @PostMapping("/examination")
     @ResponseBody
-    @ResponseStatus(HttpStatus.CREATED) ExaminationDTO create(@RequestBody CreateExaminationCommand command) {
+    @ResponseStatus(HttpStatus.CREATED)
+    ExaminationDTO create(@RequestBody CreateExaminationCommand command) {
         final Examination examination = examinationApplicationService.createExamination(command);
         return ExaminationDTO.from(examination);
     }
@@ -27,7 +26,6 @@ public class ExaminationController {
     @PutMapping("/examination/{examinationId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     ExaminationDTO getExamination(@PathVariable String examinationId) {
-
         return examinationApplicationService.getExamination(examinationId);
     }
 
